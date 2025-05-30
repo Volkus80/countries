@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import type { ThemeType } from "../types/ThemeType";
 import type { FunctionComponent } from "react";
-import { LuMoon } from "react-icons/lu";
+import { LuMoon, LuSun } from "react-icons/lu";
 import type { ThemeName } from "../types/ThemeName";
 
 const StyledButton = styled.button`
@@ -16,7 +16,7 @@ const StyledButton = styled.button`
     font-size: 1.3rem;
     font-weight: 500;
     color: ${props => props.color};
-    transition: eas-in, .5s;
+    transition: eas-in, .2s;
     &:hover {
         scale: 1.1;
     };
@@ -33,10 +33,12 @@ interface IconedButtonProps {
 }
 
 const ThemeButton: FunctionComponent<IconedButtonProps> = ({ theme, themeName, onClick }) => {
-    const name = themeName == "dark" ? "Light" : "Dark";
+    const name = themeName === "dark" ? "Light" : "Dark";
+    const icon = themeName === "dark" ? <LuMoon color={theme.color} /> : <LuSun color={theme.color} />
+
     return <StyledButton onClick={onClick} color={theme.color}>
-        <LuMoon color={theme.color} />
-        <p>{name + " Mode"}</p>
+        {icon}
+        {name + " Mode"}
     </StyledButton>
 }
 

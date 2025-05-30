@@ -1,7 +1,7 @@
 interface ThemeType {
     color: string,
     background: string,
-    secondaryBackground: string
+    secondarybackground: string
 }
 
 export type { ThemeType };

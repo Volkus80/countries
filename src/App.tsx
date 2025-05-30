@@ -1,13 +1,18 @@
-import { Header } from "./components/Header"
-import { Wrapper } from "./components/Wrapper"
-import data from '../data.json';
+import { Flags } from "./components/Flags";
+import { Header } from "./components/Header";
+import { Wrapper } from "./components/Wrapper";
+import { ThemeContext } from "./styles/ThemeProvider";
+
 
 function App() {
 
   return (
-    <Wrapper>
-      <Header />
-    </Wrapper>
+    <ThemeContext>
+      <Wrapper>
+        <Header />
+        <Flags />
+      </Wrapper>
+    </ThemeContext>
   )
 }
 
