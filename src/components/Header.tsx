@@ -7,18 +7,21 @@ import { lightTheme } from "../styles/lightTheme";
 import type { ThemeType } from "../types/ThemeType";
 
 
-
 const StyledHeader = styled.header<ThemeType>`
     display: flex;
     flex-direction: row;
     align-items: center;
     color: ${props => props.color};
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
     background-color: ${props => props.background};
     box-shadow: ${props => '0px 1px 2px 2px ' + props.secondarybackground};
     position: sticky;
     width: 100%;
+
+    @media (max-width: 450px) {
+        padding: .5rem 1rem;
+    }
 `;
 
 const Header: FunctionComponent = () => {

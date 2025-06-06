@@ -7,7 +7,7 @@ const BoldSpan = styled.span`
 
 interface DataItemProps {
     name: string,
-    value: string | number,
+    value: string | number | string[],
     color: string
 }
 

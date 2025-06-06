@@ -2,45 +2,41 @@ import { useEffect, useState, type FunctionComponent } from "react";
 import styled from "styled-components";
 import type { CountryData } from "../types/CountryData";
 import { CountriesItem } from "../components/CountriesItem";
-import { useTheme } from "../hooks/useTheme";
 
 
 const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;    
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
-    background: ${props => props.color};
-    padding: 2rem;
+    padding: 1rem 0;
     gap: 1rem;
+
+    @media (max-width: 450px) {
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+    }
 `;
 
-const Flags: FunctionComponent = () => {
-    const [data, setData] = useState<CountryData[]>([]);
-    const { theme } = useTheme();
+const Flags: FunctionComponent<{ data: CountryData[] }> = ({ data }) => {
 
-    useEffect(() => {
-        fetch("../data.json")
-            .then(res => res.json())
-            .then(data => setData(data))
-
-    }, [])
-
-    const countries = data.map(country => {
-        const { flag, name, capital, population, region } = country;
+    const countries = data.map((country, i) => {
+        // const { flag, name, capital, population, region } = country;
         return <CountriesItem
-            src={flag}
-            name={name}
-            capital={capital}
-            population={population}
-            region={region} />
+            key={i}
+            src={country.flags.png}
+            name={country.name.common}
+            capital={country.capital}
+            population={country.population}
+            region={country.region} />
     });
 
-    return <Container color={theme.background}>
+    return <Container>
         {countries}
     </Container>
 
 }
 
-export { Flags }
+export { Flags };

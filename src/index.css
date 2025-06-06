@@ -41,6 +41,12 @@ h5 {
   font-weight: 600;
 }
 
+@media (max-width: 450px) {
+  h5 {
+    font-size: 1.2rem;
+  }
+}
+
 /* h1 {
   font-size: 3.2em;
   line-height: 1.1;

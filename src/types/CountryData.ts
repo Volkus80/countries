@@ -1,14 +1,29 @@
 interface CountryData {
-    name: string,
-    capital: string,
+    name: {
+        common: string,
+        official: string,
+        nativeName: {
+            mon: {
+                official: string,
+                common: string
+            }
+        }
+    },
+    capital: string[],
     region: string,
     population: number,
     currencies: {
-        code: string,
-        name: string
-    }[],
+        [key: string]: {
+            code: string,
+            name: string
+        }
+    },
     borders: string[],
-    flag: string
+    flags: {
+        png: string,
+        svg: string,
+        alt: string
+    }
 }
 
 export type { CountryData }
