@@ -5,16 +5,18 @@ import type { ThemeName } from "../types/ThemeName";
 
 interface WrapperProps {
     padding?: string,
-    children: ReactNode[]
+    children: ReactNode | ReactNode[]
 }
 
 
 const StyledWrapper = styled.div<{ padding?: string, type: ThemeName, bg: string }>`
     width: 100%;
-    height: 100%;
+    // height: 100%;
+    min-height: 100%;
     background-color: ${props => props.type === "light" ? "#FAFAFA" : props.bg};
     display: flex;
     flex-direction: column;
+    flex: 2 1;
     // padding: ${props => props.padding};
     padding: 2rem 4rem;
     @media(max-width: 450px) {

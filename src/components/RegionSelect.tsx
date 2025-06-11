@@ -3,6 +3,9 @@ import type { ThemeType } from "../types/ThemeType";
 import { useState, type FunctionComponent } from "react";
 import { useTheme } from "../hooks/useTheme";
 import { HiOutlineSelector } from "react-icons/hi";
+import { useSelector, useDispatch } from "react-redux";
+import type { CAppDispatch, CAppState } from "../store";
+import { setFilterByRegion } from "../features/filters/filters-slice";
 
 type SelectTextValue = "Asia" | "Americas" | "Oceania" | "Africa" | "Europe" | "Antarctic" | "Select Region" | "All";
 
@@ -93,11 +96,13 @@ const selectItemsData: SelectItemObj[] = [
 
 const RegionSelect: FunctionComponent = () => {
     const { theme } = useTheme();
+    const region = useSelector((state: CAppState) => state.filters.region);
+    const dispatch: CAppDispatch = useDispatch();
     const [isShowSelect, setShowSelect] = useState(false);
-    const [selected, setSelected] = useState<SelectItemObj[]>(selectItemsData);
+    // const [selected, setSelected] = useState<SelectItemObj[]>(selectItemsData);
 
     const handleSelected = (index: SelectTextValue) => {
-        setSelected(selected.map((item) => item.value === index ? { ...item, selected: true } : { ...item, selected: false }));
+        dispatch(setFilterByRegion(index));
     }
 
 
@@ -107,7 +112,7 @@ const RegionSelect: FunctionComponent = () => {
         secondarybackground={theme.secondarybackground}
         onClick={() => setShowSelect(!isShowSelect)}
     >
-        <p >{selected.find(s => s.selected)?.text}</p>
+        <p>{selectItemsData.find(s => s.value === region)?.text}</p>
         <HiOutlineSelector color={theme.color} />
         <SelectItems
             color={theme.color}
@@ -115,7 +120,7 @@ const RegionSelect: FunctionComponent = () => {
             secondarybackground={theme.secondarybackground}
             className={!isShowSelect ? "visible" : "hidden"}
         >
-            {selected.filter(s => !s.selected).map((item, index) => (
+            {selectItemsData.filter(s => s.value !== region).map((item, index) => (
                 <Item
                     bg={theme.secondarybackground}
                     key={index}
@@ -130,4 +135,4 @@ const RegionSelect: FunctionComponent = () => {
 
 }
 
-export { RegionSelect };
+export { RegionSelect, type SelectTextValue };

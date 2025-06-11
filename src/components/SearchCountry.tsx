@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import type { ThemeType } from "../types/ThemeType";
 import { LuSearch } from "react-icons/lu";
-import type { FunctionComponent } from "react";
+import type { ChangeEvent, FunctionComponent } from "react";
 import { useTheme } from "../hooks/useTheme";
+import { useDispatch } from "react-redux";
+import { setFilterByName } from "../features/filters/filters-slice";
 
 const Container = styled.div<ThemeType>`
     max-width: 350px;
@@ -28,6 +30,9 @@ const Input = styled.input.attrs({ type: "search", placeholder: "Search for a co
 
 const SearchCountry: FunctionComponent = () => {
     const { theme } = useTheme();
+    const dispatch = useDispatch();
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => dispatch(setFilterByName(e.target.value))
 
     return (
         <Container
@@ -36,7 +41,7 @@ const SearchCountry: FunctionComponent = () => {
             secondarybackground={theme.secondarybackground}
         >
             <LuSearch color={theme.color} />
-            <Input color={theme.color} />
+            <Input color={theme.color} onChange={handleChange} />
 
         </Container>
     );

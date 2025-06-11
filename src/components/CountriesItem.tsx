@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { useTheme } from "../hooks/useTheme";
 import { DataItem } from "./DataItem";
 
-const CountriesItemContainer = styled.div<{ shadow_color: string }>`
+interface ShadowedComponentProp {
+    shadow_color: string
+}
+
+const CountriesItemContainer = styled.div<ShadowedComponentProp>`
     width: 320px;
     border-radius: 10px;
     overflow: hidden;
@@ -12,6 +16,7 @@ const CountriesItemContainer = styled.div<{ shadow_color: string }>`
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column; 
+    height: 100%;
 `;
 
 const CountryName = styled.h2`
@@ -56,11 +61,11 @@ const CountriesItem: FunctionComponent<CountriesItemProps> = ({ src, name, popul
         <Flag src={src} loading="lazy" border={theme.secondarybackground} />
         <ContryDataContainer background={theme.background}>
             <CountryName color={theme.color}>{name}</CountryName>
-            <DataItem name="Population:" value={population} color={theme.color} />
+            <DataItem name="Population:" value={population.toLocaleString()} color={theme.color} />
             <DataItem name="Region:" value={region} color={theme.color} />
             <DataItem name="Capitals:" value={capitals} color={theme.color} />
         </ContryDataContainer>
     </CountriesItemContainer>
 }
 
-export { CountriesItem }
+export { CountriesItem, type ShadowedComponentProp }
