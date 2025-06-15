@@ -8,7 +8,7 @@ const fetchCountries = createAsyncThunk(
     "@@countries/fetch-countries",
     async () => {
         // const data = await fetch("https://restcountries.com/v3.1/all");
-        const data = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,population,borders,flags");
+        const data = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags");
         // if (!data.ok) throw new Error();
         const obj = await data.json();
         return obj as CountryData[];
@@ -58,9 +58,14 @@ const countriesReducer = countriesSlice.reducer
 const filteredCountriesSelector = (state: CAppState, filters: Filters) => {
     if (filters.name === "" && filters.region === "All") return state.countries.data;
     const newFilters = { ...filters, region: filters.region === "All" ? "" : filters.region };
+    return state.countries.data.filter(country => {
+        const fitRegion = country.region.includes(newFilters.region);
+        const fitName = country.name.common.toLowerCase().includes(newFilters.name.toLowerCase().trim());
+        return fitRegion && fitName;
+    });
 
-    return state.countries.data.filter(country => country.region.indexOf(newFilters.region) === 0 && country.name.common.indexOf(newFilters.name) > 0);
-}
+};
+
 export { countriesReducer, fetchCountries, filteredCountriesSelector }
 
 

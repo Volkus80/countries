@@ -2,7 +2,7 @@ import { type FunctionComponent, useState, useEffect } from "react";
 import type { CountryData } from "../types/CountryData";
 import { Wrapper } from "../components/Wrapper";
 import { SearchBlock } from "../components/SearchBlock";
-import { Flags } from "../components/Flags";
+import { Flags } from "../features/countries/Flags";
 
 const Home: FunctionComponent = () => {
 

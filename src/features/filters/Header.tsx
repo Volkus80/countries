@@ -1,10 +1,10 @@
 import { useContext, type FunctionComponent } from "react";
 import styled from "styled-components";
-import { ThemeButton } from "./ThemeButton";
-import { ThemeProvider } from "../styles/ThemeProvider";
-import { darkTheme } from "../styles/darkTheme";
-import { lightTheme } from "../styles/lightTheme";
-import type { ThemeType } from "../types/ThemeType";
+import { ThemeButton } from "../../components/ThemeButton";
+import { ThemeProvider } from "../../styles/ThemeProvider";
+import { darkTheme } from "../../styles/darkTheme";
+import { lightTheme } from "../../styles/lightTheme";
+import type { ThemeType } from "../../types/ThemeType";
 
 
 const StyledHeader = styled.header<ThemeType>`
@@ -16,7 +16,9 @@ const StyledHeader = styled.header<ThemeType>`
     padding: 1rem 4rem;
     background-color: ${props => props.background};
     box-shadow: ${props => '0px 1px 2px 2px ' + props.secondarybackground};
-    position: sticky;
+    position: fixed;
+    top: 0px;
+    z-index:100;
     width: 100%;
 
     @media (max-width: 450px) {

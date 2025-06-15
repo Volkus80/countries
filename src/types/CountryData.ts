@@ -3,7 +3,7 @@ interface CountryData {
         common: string,
         official: string,
         nativeName: {
-            mon: {
+            [key: string]: {
                 official: string,
                 common: string
             }
@@ -12,13 +12,6 @@ interface CountryData {
     capital: string[],
     region: string,
     population: number,
-    currencies: {
-        [key: string]: {
-            code: string,
-            name: string
-        }
-    },
-    borders: string[],
     flags: {
         png: string,
         svg: string,

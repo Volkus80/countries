@@ -19,6 +19,7 @@ const ShadowedButton = styled.button<ThemeType>`
     outline: none;
     cursor: pointer;
     transition: ease-in, .3s;
+    align-self: flex-start;
     &:hover {
         transform: scale(1.1);
     };

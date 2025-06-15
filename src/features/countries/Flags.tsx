@@ -1,11 +1,11 @@
 import { useEffect, type CSSProperties, type FunctionComponent } from "react";
 import styled from "styled-components";
-import { CountriesItem } from "../components/CountriesItem";
+import { CountriesItem } from "../../components/CountriesItem";
 import { useDispatch, useSelector } from "react-redux";
-import type { CAppDispatch, CAppState } from "../store";
-import { fetchCountries, filteredCountriesSelector } from "../features/countries/countries-slice";
+import type { CAppDispatch, CAppState } from "../../store";
+import { fetchCountries, filteredCountriesSelector } from "./countries-slice";
 import { PuffLoader } from "react-spinners";
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import { Link } from "react-router";
 
 const Container = styled.div<{ fl: string }>`
@@ -35,18 +35,17 @@ const Flags: FunctionComponent = () => {
     const dispatch: CAppDispatch = useDispatch();
     const { loading } = useSelector((state: CAppState) => state.countries)
     const filters = useSelector((state: CAppState) => state.filters);
-    const countriesData = useSelector((state: CAppState) => filteredCountriesSelector(state, filters))
+    const countriesData = useSelector((state: CAppState) => filteredCountriesSelector(state, filters));
     const { theme } = useTheme();
 
     useEffect(() => {
         dispatch(fetchCountries());
     }, [dispatch])
 
-    const countries = countriesData.map((country, i) => {
+    const countries = countriesData.map((country) => {
 
-        return <Link to={`/flags/${country.name.common}`}>
+        return <Link to={`/flags/${country.name.common}`} key={country.name.common}>
             <CountriesItem
-                key={i}
                 src={country.flags.png}
                 name={country.name.common}
                 capital={country.capital}
