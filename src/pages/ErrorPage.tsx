@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MdOutlineErrorOutline } from 'react-icons/md';
 import type { FunctionComponent } from "react";
 import { useTheme } from "../hooks/useTheme";
-import type { ThemeType } from "../types/ThemeType";
+
 
 const Wrapper = styled.main<{ background: string }>`
     background-color: ${props => props.background};
@@ -12,6 +12,7 @@ const Wrapper = styled.main<{ background: string }>`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    background: transparent;
 `;
 
 const ErrorText = styled.p`

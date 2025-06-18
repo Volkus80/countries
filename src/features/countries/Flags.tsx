@@ -40,7 +40,7 @@ const Flags: FunctionComponent = () => {
 
     useEffect(() => {
         dispatch(fetchCountries());
-    }, [dispatch])
+    }, [])
 
     const countries = countriesData.map((country) => {
 
@@ -48,7 +48,7 @@ const Flags: FunctionComponent = () => {
             <CountriesItem
                 src={country.flags.png}
                 name={country.name.common}
-                capital={country.capital}
+                capital={country?.capital || []}
                 population={country.population}
                 region={country.region} />
         </Link>

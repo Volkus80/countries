@@ -2,6 +2,7 @@ import { type FunctionComponent } from "react";
 import styled from "styled-components";
 import { useTheme } from "../hooks/useTheme";
 import { DataItem } from "./DataItem";
+import { CountryName } from "./CoutryName";
 
 interface ShadowedComponentProp {
     shadow_color: string
@@ -19,12 +20,7 @@ const CountriesItemContainer = styled.div<ShadowedComponentProp>`
     height: 100%;
 `;
 
-const CountryName = styled.h2`
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: ${props => props.color};
-    flex: 2 1;
-`;
+
 
 const ContryDataContainer = styled.div<{ background: string }>`
     padding: 1rem;
@@ -35,8 +31,8 @@ const ContryDataContainer = styled.div<{ background: string }>`
     min-height: 12rem;
 `;
 
-const Flag = styled.img<{ border: string }>`
-    width: 320px;  
+const Flag = styled.img<{ border: string }>`  
+    width: 320px;
     flex: 2 1 auto; 
     object-fit: fill;
     border-bottom: ${props => "solid 1px " + props.border};

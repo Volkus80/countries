@@ -1,19 +1,16 @@
 import styled from "styled-components"
-import { type ThemeType } from "../types/ThemeType"
-import { type FunctionComponent, type ReactNode } from "react"
-import { useTheme } from "../hooks/useTheme"
+import type { ThemeType, ButtonProps } from "../types";
+import { type FunctionComponent } from "react";
+import { useTheme } from "../hooks/useTheme";
 
-interface ButtonProps {
-    onClick: () => void,
-    children: ReactNode | ReactNode[]
-}
+
 
 
 const ShadowedButton = styled.button<ThemeType>`
     border: none;
-    padding: .6rem 1rem;
+    padding: .6rem 2rem;
     border-radius: 10px;
-    box-shadow: ${props => "0px 1px 2px 2px " + props.secondarybackground};
+    box-shadow: ${props => "0px 0px 3px 2px " + props.secondarybackground};
     background: ${props => props.background};
     color: ${props => props.color};
     outline: none;
@@ -29,7 +26,7 @@ const ShadowedButton = styled.button<ThemeType>`
     }
 `;
 
-const Button: FunctionComponent<ButtonProps> = ({ children, onClick }) => {
+const Button: FunctionComponent<ButtonProps> = ({ children, onClick = () => { } }) => {
     const { theme } = useTheme();
     return <ShadowedButton {...theme} onClick={onClick}>
         {children}
@@ -37,4 +34,4 @@ const Button: FunctionComponent<ButtonProps> = ({ children, onClick }) => {
 
 };
 
-export { Button }
+export { Button, type ButtonProps }

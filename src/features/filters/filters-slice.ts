@@ -23,13 +23,16 @@ const filterSlice = createSlice({
         },
         setFilterByRegion: (state, action: PayloadAction<SelectTextValue>) => {
             state.region = action.payload
+        },
+        clearFilters: (state) => {
+            return initialState;
         }
     }
 });
 
 const filtersReducer = filterSlice.reducer;
-const { setFilterByName, setFilterByRegion } = filterSlice.actions;
+const { setFilterByName, setFilterByRegion, clearFilters } = filterSlice.actions;
 
-export { filtersReducer, setFilterByName, setFilterByRegion, type Filters };
+export { filtersReducer, setFilterByName, setFilterByRegion, clearFilters, type Filters };
 
 

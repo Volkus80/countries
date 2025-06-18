@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import { Header } from "../features/filters/Header";
 import { Wrapper } from "./Wrapper";
 import { Outlet } from "react-router";
@@ -11,5 +11,7 @@ const Layout: FunctionComponent = () => {
         </Wrapper>
     </>
 }
+
+
 
 export { Layout };

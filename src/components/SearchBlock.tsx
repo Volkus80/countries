@@ -11,10 +11,12 @@ const StyledSearchBlock = styled.div`
     padding: 1rem 0;
     background: transparent;
     gap: 1rem;
+    flex-wrap: wrap;
 
     @media (max-width: 560px) {
-        flex-direction: column;
+        // flex-direction: column;
         align-items: flex-start;
+        align-self: flex-start;
     }
 
 

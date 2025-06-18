@@ -13,14 +13,13 @@ const StyledWrapper = styled.div<{ padding?: string, type: ThemeName, bg: string
     width: 100%;
     // height: 100%;
     min-height: 100%;
-    margin-top: 60px;
     background-color: ${props => props.type === "light" ? "#FAFAFA" : props.bg};
     display: flex;
     flex-direction: column;
     flex: 2 1;
-    padding: 2rem 4rem;
+    padding: calc(2rem + 60px) 4rem 2rem;
     @media(max-width: 450px) {
-        padding: 0;
+        padding:  60px 1rem 1rem;
         align-items: center;
     };
 `;

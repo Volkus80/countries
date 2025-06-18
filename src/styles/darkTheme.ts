@@ -2,7 +2,7 @@ import type { ThemeType } from "../types/ThemeType"
 
 const darkTheme: ThemeType = {
     color: "white",
-    background: "#213547",
+    background: "#212E37",
     secondarybackground: "#355278"
 }
 

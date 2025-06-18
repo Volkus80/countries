@@ -19,11 +19,13 @@ const router = createBrowserRouter([
                 path: "/flags/:name",
                 element: <Flag />,
                 loader: async ({ params }) => {
-                    const data = await fetch(`https://restcountries.com/v3.1/name/${params.name}`);
+                    const data = await fetch(`https://restcountries.com/v3.1/name/${params.name}?fullText=true`);
                     if (!data.ok) throw new Error("Что-то пошло не так");
-                    return await data.json() as CountryFullData;
+                    const res = await data.json();
+                    return res as CountryFullData[];
                 },
-                errorElement: <ErrorPage />
+                errorElement: <ErrorPage />,
+
             }
 
         ]

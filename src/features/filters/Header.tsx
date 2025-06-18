@@ -5,6 +5,9 @@ import { ThemeProvider } from "../../styles/ThemeProvider";
 import { darkTheme } from "../../styles/darkTheme";
 import { lightTheme } from "../../styles/lightTheme";
 import type { ThemeType } from "../../types/ThemeType";
+import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { clearFilters } from "./filters-slice";
 
 
 const StyledHeader = styled.header<ThemeType>`
@@ -29,8 +32,10 @@ const StyledHeader = styled.header<ThemeType>`
 const Header: FunctionComponent = () => {
     const themeProvider = useContext(ThemeProvider);
     const theme: ThemeType = themeProvider.type === "dark" ? darkTheme : lightTheme;
+    const dispatch = useDispatch();
     return <StyledHeader background={theme.background} color={theme.color} secondarybackground={theme.secondarybackground}>
-        <h5>Where in the world?</h5>
+        <Link to="/" style={{ color: theme.color, outline: "none" }} onClick={() => dispatch(clearFilters())}>
+            <h5>Where in the world?</h5></Link>
         <ThemeButton
             onClick={themeProvider.toggle}
             themeName={themeProvider.type}
