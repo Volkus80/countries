@@ -26,6 +26,7 @@ const ContryDataContainer = styled.div<{ background: string }>`
     padding: 1rem;
     background: ${props => props.background};
     display: flex;
+    flex: 1 1;
     flex-direction: column;
     justify-content: space-between;
     min-height: 12rem;
@@ -33,6 +34,7 @@ const ContryDataContainer = styled.div<{ background: string }>`
 
 const Flag = styled.img<{ border: string }>`  
     width: 320px;
+    max-height: 240px;
     flex: 2 1 auto; 
     object-fit: fill;
     border-bottom: ${props => "solid 1px " + props.border};

@@ -12,6 +12,4 @@ const Layout: FunctionComponent = () => {
     </>
 }
 
-
-
 export { Layout };

@@ -38,12 +38,10 @@ interface IconedButtonProps {
 }
 
 const ThemeButton: FunctionComponent<IconedButtonProps> = ({ theme, themeName, onClick }) => {
-    // const name = themeName === "dark" ? "Light" : "Dark";
     const icon = themeName === "dark" ? <LuMoon color={theme.color} size="2rem" /> : <LuSun color={theme.color} size="2rem" />
 
     return <StyledButton onClick={onClick} color={theme.color}>
         {icon}
-        {/* {name + " Mode"} */}
     </StyledButton>
 }
 

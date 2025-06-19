@@ -34,8 +34,12 @@ const Header: FunctionComponent = () => {
     const theme: ThemeType = themeProvider.type === "dark" ? darkTheme : lightTheme;
     const dispatch = useDispatch();
     return <StyledHeader background={theme.background} color={theme.color} secondarybackground={theme.secondarybackground}>
-        <Link to="/" style={{ color: theme.color, outline: "none" }} onClick={() => dispatch(clearFilters())}>
-            <h5>Where in the world?</h5></Link>
+        <Link
+            to="/"
+            style={{ color: theme.color, outline: "none" }}
+            onClick={() => dispatch(clearFilters())}>
+            <h5>Where in the world?</h5>
+        </Link>
         <ThemeButton
             onClick={themeProvider.toggle}
             themeName={themeProvider.type}

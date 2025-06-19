@@ -24,7 +24,7 @@ const filterSlice = createSlice({
         setFilterByRegion: (state, action: PayloadAction<SelectTextValue>) => {
             state.region = action.payload
         },
-        clearFilters: (state) => {
+        clearFilters: () => {
             return initialState;
         }
     }

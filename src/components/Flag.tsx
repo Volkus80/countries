@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { useTheme } from "../hooks/useTheme";
 import styled from "styled-components";
 import { Button } from "../components/Button";
@@ -24,7 +24,7 @@ const Main = styled.div`
     margin-top: 2rem;
     height: 100%;
     flex: 1 1;
-    align-items: flex-start;
+    align-items: center;
     // justify-content: stretch;
     gap: 2rem;
     flex-wrap: wrap;
@@ -39,6 +39,7 @@ const DescriptionBlock = styled.div<{ basis?: string }>`
     @media(max-width: 450px) {
         margin-bottom: .8rem;
     }
+    
 `;
 
 const HorizontalBlock = styled(DescriptionBlock)`
@@ -52,19 +53,15 @@ const HorizontalBlock = styled(DescriptionBlock)`
 const Img = styled.img.attrs({ loading: "lazy" })`
     flex: 1 1 320px;
     object-fit: contain;
-`;
-
-const ButtonsBlock = styled(HorizontalBlock)`
-    justify-content: space-between;
+    max-height: 50vh;
 `;
 
 
 
-const Flag: FunctionComponent = () => {
-    const [countryData] = useLoaderData<CountryFullData[]>();
-    console.log("counttryData = ", countryData);
+const Flag: FunctionComponent<{ data: CountryFullData[] }> = ({ data }) => {
     const { theme } = useTheme();
     const navigate = useNavigate();
+    const [countryData] = data;
 
     return <Wrapper>
         <Button onClick={() => navigate(-1)}>
@@ -77,7 +74,7 @@ const Flag: FunctionComponent = () => {
                 <CountryName color={theme.color}>{countryData.name.common}</CountryName>
                 <HorizontalBlock>
                     <DescriptionBlock basis="auto">
-                        <DataItem name="Native name:" value={Object.values(countryData.name.nativeName).map(elem => elem.common).join(", ")} color={theme.color} />
+                        <DataItem name="Native name:" value={Object.values(countryData.name?.nativeName || {}).map(elem => elem.common).join(", ")} color={theme.color} />
                         <DataItem name="Population:" value={countryData.population.toLocaleString()} color={theme.color} />
                         <DataItem name="Region:" value={countryData.region} color={theme.color} />
                         <DataItem name="Sub region:" value={countryData.subregion} color={theme.color} />
@@ -86,15 +83,14 @@ const Flag: FunctionComponent = () => {
                     <DescriptionBlock basis="auto">
                         <DataItem name="Top Level Domain:" value={countryData.tld.join(", ")} color={theme.color} />
                         <DataItem name="Currencies:" value={Object.values(countryData?.currencies || []).map(c => c.name).join(", ")} color={theme.color} />
-                        <DataItem name="Languages:" value={Object.values(countryData.languages).join(", ")} color={theme.color} />
+                        <DataItem name="Languages:" value={Object.values(countryData?.languages || {}).join(", ")} color={theme.color} />
                     </DescriptionBlock>
                 </HorizontalBlock>
                 <HorizontalBlock>
                     <DataItem name="Border Countries" value="" color={theme.color} />
-                    <ButtonsBlock>
-
-                        {countryData?.borders?.map(b => <LoaderButton code={b} />)}
-                    </ButtonsBlock>
+                    <HorizontalBlock>
+                        {countryData?.borders?.map(b => <LoaderButton code={b} key={b} />)}
+                    </HorizontalBlock>
                 </HorizontalBlock>
 
 

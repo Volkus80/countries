@@ -7,9 +7,7 @@ import type { Filters } from "../filters/filters-slice";
 const fetchCountries = createAsyncThunk(
     "@@countries/fetch-countries",
     async () => {
-        // const data = await fetch("https://restcountries.com/v3.1/all");
         const data = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags");
-        // if (!data.ok) throw new Error();
         const obj = await data.json();
         return obj as CountryData[];
     }
@@ -35,13 +33,13 @@ const countriesSlice = createSlice(
         reducers: {},
         extraReducers: (builder) => {
             builder
-                .addCase(fetchCountries.pending, (state, action) => {
+                .addCase(fetchCountries.pending, (state) => {
                     state.loading = true;
                 })
-                .addCase(fetchCountries.rejected, (state, action) => {
+                .addCase(fetchCountries.rejected, (state) => {
                     return {
                         ...state,
-                        error: "Что-то пошло не так",
+                        error: "Something wrong...",
                         loading: false
                     }
                 })

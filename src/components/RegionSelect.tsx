@@ -99,7 +99,6 @@ const RegionSelect: FunctionComponent = () => {
     const region = useSelector((state: CAppState) => state.filters.region);
     const dispatch: CAppDispatch = useDispatch();
     const [isShowSelect, setShowSelect] = useState(false);
-    // const [selected, setSelected] = useState<SelectItemObj[]>(selectItemsData);
 
     const handleSelected = (index: SelectTextValue) => {
         dispatch(setFilterByRegion(index));

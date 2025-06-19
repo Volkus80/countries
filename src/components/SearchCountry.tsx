@@ -8,9 +8,8 @@ import { setFilterByName } from "../features/filters/filters-slice";
 import type { CAppState } from "../store";
 
 const Container = styled.div<ThemeType>`
-    // max-width: 350px;
-    flex: 1 1 350px;
-
+    max-width: 450px;
+    flex: 1 1;
     background: ${props => props.background};
     border-radius: .5rem;
     padding: .8rem 1rem;
@@ -24,7 +23,7 @@ const Input = styled.input.attrs({ type: "search", placeholder: "Search for a co
     font-size: 1rem;
     border: none;
     outline: none;
-    flex: 2 1 auto;
+    flex: 1 1;
     background: transparent;
     margin: 0 1rem;
     color: ${props => props.color};

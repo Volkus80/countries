@@ -22,7 +22,7 @@ const useFetch = <T>(url: string): FetchData<T> => {
 
         getData();
 
-    }, []);
+    }, [url]);
 
     return { error, loading, data };
 };

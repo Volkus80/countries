@@ -33,13 +33,16 @@ const loaderCss: CSSProperties = {
 
 const Flags: FunctionComponent = () => {
     const dispatch: CAppDispatch = useDispatch();
-    const { loading } = useSelector((state: CAppState) => state.countries)
+    const { loading, data } = useSelector((state: CAppState) => state.countries)
     const filters = useSelector((state: CAppState) => state.filters);
     const countriesData = useSelector((state: CAppState) => filteredCountriesSelector(state, filters));
     const { theme } = useTheme();
 
     useEffect(() => {
-        dispatch(fetchCountries());
+        if (data.length === 0) {
+            dispatch(fetchCountries());
+        }
+
     }, [])
 
     const countries = countriesData.map((country) => {
@@ -61,7 +64,7 @@ const Flags: FunctionComponent = () => {
             aria-label="Loading..."
             loading={loading}
         />
-        {countries}
+        {!loading && countries}
     </Container>
 
 }
