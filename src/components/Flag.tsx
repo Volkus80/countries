@@ -63,6 +63,8 @@ const Flag: FunctionComponent<{ data: CountryFullData[] }> = ({ data }) => {
     const navigate = useNavigate();
     const [countryData] = data;
 
+    console.log(countryData);
+
     return <Wrapper>
         <Button onClick={() => navigate(-1)}>
             <FaArrowLeft color={theme.color} />
@@ -78,11 +80,11 @@ const Flag: FunctionComponent<{ data: CountryFullData[] }> = ({ data }) => {
                         <DataItem name="Population:" value={countryData.population.toLocaleString()} color={theme.color} />
                         <DataItem name="Region:" value={countryData.region} color={theme.color} />
                         <DataItem name="Sub region:" value={countryData.subregion} color={theme.color} />
-                        <DataItem name="Capital:" value={countryData?.capital?.join(", ") || ""} color={theme.color} />
+                        <DataItem name="Capital:" value={(countryData?.capital || []).join(", ") || ""} color={theme.color} />
                     </DescriptionBlock>
                     <DescriptionBlock basis="auto">
-                        <DataItem name="Top Level Domain:" value={countryData.tld.join(", ")} color={theme.color} />
-                        <DataItem name="Currencies:" value={Object.values(countryData?.currencies || []).map(c => c.name).join(", ")} color={theme.color} />
+                        <DataItem name="Top Level Domain:" value={(countryData?.tld || []).join(", ")} color={theme.color} />
+                        <DataItem name="Currencies:" value={Object.values(countryData?.currencies || {}).map(c => c.name).join(", ")} color={theme.color} />
                         <DataItem name="Languages:" value={Object.values(countryData?.languages || {}).join(", ")} color={theme.color} />
                     </DescriptionBlock>
                 </HorizontalBlock>
