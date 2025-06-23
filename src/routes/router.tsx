@@ -12,12 +12,17 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home />
+                element: <Home />,
+                errorElement: <ErrorPage />
             },
             {
                 path: "/flags/:name",
                 element: <Country />,
-                errorElement: <ErrorPage />,
+                errorElement: <ErrorPage />
+            },
+            {
+                path: "*",
+                element: <ErrorPage />
             }
 
         ]

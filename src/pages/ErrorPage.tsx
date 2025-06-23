@@ -25,7 +25,7 @@ const ErrorPage: FunctionComponent = () => {
     const { theme } = useTheme();
     return <Wrapper background={theme.background}>
         <MdOutlineErrorOutline color={theme.color} fontSize="10rem" />
-        <ErrorText color={theme.color}> Что-то пошло не так </ErrorText>
+        <ErrorText color={theme.color}> Something wrong... </ErrorText>
     </Wrapper>
 };
 

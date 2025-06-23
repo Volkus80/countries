@@ -63,8 +63,6 @@ const Flag: FunctionComponent<{ data: CountryFullData[] }> = ({ data }) => {
     const navigate = useNavigate();
     const [countryData] = data;
 
-    console.log(countryData);
-
     return <Wrapper>
         <Button onClick={() => navigate(-1)}>
             <FaArrowLeft color={theme.color} />

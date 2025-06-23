@@ -10,8 +10,8 @@ const useFetch = <T>(url: string): FetchData<T> => {
         const getData = async () => {
             const response = await fetch(url);
             if (!response.ok) {
-                setError("Что-то пошло не так");
                 setLoading(false);
+                setError("Что-то пошло не так");
                 return;
             }
 
