@@ -10,7 +10,7 @@ interface CountryFullData extends CountryData {
     },
     subregion: string,
     languages?: string[],
-    tld: string[]
+    tld?: string[]
 }
 
 export type { CountryFullData };
