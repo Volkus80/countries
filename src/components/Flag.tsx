@@ -50,7 +50,7 @@ const HorizontalBlock = styled(DescriptionBlock)`
     gap: 1.5rem`;
 
 
-const Img = styled.img.attrs({ loading: "lazy" })`
+const Img = styled.img.attrs({ /*loading: "lazy" */ })`
     flex: 1 1 320px;
     object-fit: contain;
     max-height: 50vh;
